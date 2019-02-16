@@ -22,7 +22,7 @@ int main()
         m(1,1) = 4;
 
         py::object result = py_test.attr("test_mat")(m);
-        result = py_test.attr("probe_mat")(m,m,m);
+        py_test.attr("probe_mat")(m,m,m);
         MatrixXd res = result.cast<MatrixXd>();
         std::cout << "In c++ \n" << res << std::endl;
   }

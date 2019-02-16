@@ -17,6 +17,7 @@ def probe_mat(m0,m1,m2):
     m1 = np.expand_dims(m1, 2)
     m2 = np.expand_dims(m2, 2)
     im = np.concatenate((m0,m1,m2),2)
+    print("shape:{}".format(im.shape))
     imshow(im)
     show()
     return im

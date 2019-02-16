@@ -29,6 +29,7 @@ python exp.py
 ```
 or you can use cmake
 ```angularjs
+cd python_cpp
 mkdir build
 cd build
 cmake ..

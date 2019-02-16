@@ -5,6 +5,7 @@
 #include<pybind11/eigen.h>
 using Eigen::MatrixXd;
 namespace py = pybind11;
+typedef Eigen::Matrix<unsigned char,Eigen::Dynamic, Eigen::Dynamic> MatrixU8;
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
 
         py::module py_test = py::module::import("py_test");
 
-        MatrixXd m(2,2);
+        MatrixU8 m(2,2);
         m(0,0) = 1;
         m(1,0) = 2;
         m(0,1) = 3;

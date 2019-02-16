@@ -3,13 +3,13 @@
 #include <iostream>
 
 #include<pybind11/eigen.h>
-using Eigen::MatrixXd;
 namespace py = pybind11;
 
 
 #include <opencv2/opencv.hpp>
 using cv::Mat ;
 
+typedef Eigen::Matrix<unsigned char,Eigen::Dynamic, Eigen::Dynamic> MatrixU8;
 
 int main()
 {
@@ -36,9 +36,9 @@ int main()
 
         py::module py_test = py::module::import("py_test");
 
-        MatrixXd m_b(height,width);
-        MatrixXd m_g(height,width);
-        MatrixXd m_r(height,width);
+        MatrixU8 m_b(height,width);
+        MatrixU8 m_g(height,width);
+        MatrixU8 m_r(height,width);
         for(int h = 0 ; h < img.rows ; ++ h)
         {
             for(int w = 0 ; w < img.cols ; ++ w)
@@ -49,10 +49,10 @@ int main()
 //                m_b(h , w) = 255 ;
 //                m_g(h , w) = 0;
 //                m_r(h , w) = 0 ;
-                std::cout << h << " " << w << " " << m_b(h,w) << " ";
-                std::cout << m_g(h,w) << " ";
-                std::cout << m_r(h,w) << " ";
-                std::cout << std::endl;
+//                std::cout << h << " " << w << " " << m_b(h,w) << " ";
+//                std::cout << m_g(h,w) << " ";
+//                std::cout << m_r(h,w) << " ";
+//                std::cout << std::endl;
             }
         }
 

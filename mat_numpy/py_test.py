@@ -14,12 +14,11 @@ def test_mat(m):
 
 
 def probe_mat(m0,m1,m2):
-    print("Inside python m0 = \n ", m0)
+    # print("Inside python m0 = \n ", m0)
     m0 = np.expand_dims(m0, 2)
     m1 = np.expand_dims(m1, 2)
     m2 = np.expand_dims(m2, 2)
     im = np.concatenate((m0,m1,m2),2)
-    im = np.array(im,dtype=uint8)
     print("shape:{}".format(im.shape))
     imshow(im)
     show()

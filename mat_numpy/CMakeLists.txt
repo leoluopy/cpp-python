@@ -15,3 +15,8 @@ target_link_libraries(test_mat python3.6m)
 
 add_executable(show_mat show_mat.cpp)
 target_link_libraries(show_mat  opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs )
+
+add_executable(cvmat2numpy cvmat2numpy.cpp)
+target_link_libraries(cvmat2numpy python3.6m opencv_core opencv_highgui opencv_imgproc opencv_imgcodecs )
+
+SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR})

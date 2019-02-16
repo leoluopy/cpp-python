@@ -4,6 +4,7 @@ namespace py = pybind11;
 
 int add(int i, int j)
 {
+    printf(" this is exmaple of python invoke cpp , always used in accelerating python application\n");
     return i + j;
 }
 

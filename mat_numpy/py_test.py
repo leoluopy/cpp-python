@@ -1,5 +1,7 @@
 from pylab import *
 import numpy as np
+import cv2
+
 def test_mat(m):
     print("Inside python m = \n ", m)
     m[0, 0] = 10
@@ -17,6 +19,7 @@ def probe_mat(m0,m1,m2):
     m1 = np.expand_dims(m1, 2)
     m2 = np.expand_dims(m2, 2)
     im = np.concatenate((m0,m1,m2),2)
+    im = np.array(im,dtype=uint8)
     print("shape:{}".format(im.shape))
     imshow(im)
     show()
@@ -28,6 +31,19 @@ def add(i, j):
     return (i + j)
 
 
-if __name__ == '__main__':
+def case1():
     m = [[0,50],[60,80]]
     probe_mat(m,m,m)
+
+
+def case2():
+    im = cv2.imread("test_im.jpg")
+    cv2.imshow("w",im)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+if __name__ == '__main__':
+
+    # case1()
+    case2()

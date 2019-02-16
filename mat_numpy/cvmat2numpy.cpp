@@ -28,7 +28,7 @@ int main()
         return -1;
     }
     cv::imshow("image", img);
-    cv::waitKey(1000);
+    cv::waitKey(500);
     try
     {
     //        Py_SetProgramName("PYTHON");
@@ -41,11 +41,18 @@ int main()
         MatrixXd m_r(height,width);
         for(int h = 0 ; h < img.rows ; ++ h)
         {
-            for(int w = 0 ; w < img.cols / 2 ; ++ w)
+            for(int w = 0 ; w < img.cols ; ++ w)
             {
-                m_b(h , w) = img.at<cv::Vec3b>(h , w)[0] ;
-                m_g(h , w) = img.at<cv::Vec3b>(h , w)[1] ;
-                m_r(h , w) = img.at<cv::Vec3b>(h , w)[2] ;
+                m_b(h , w) = img.ptr<cv::Vec3b>(h)[w][0] ;
+                m_g(h , w) = img.ptr<cv::Vec3b>(h)[w][1] ;
+                m_r(h , w) = img.ptr<cv::Vec3b>(h)[w][2] ;
+//                m_b(h , w) = 255 ;
+//                m_g(h , w) = 0;
+//                m_r(h , w) = 0 ;
+                std::cout << h << " " << w << " " << m_b(h,w) << " ";
+                std::cout << m_g(h,w) << " ";
+                std::cout << m_r(h,w) << " ";
+                std::cout << std::endl;
             }
         }
 

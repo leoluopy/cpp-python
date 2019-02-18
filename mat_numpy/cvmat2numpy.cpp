@@ -11,9 +11,15 @@ using cv::Mat ;
 
 typedef Eigen::Matrix<unsigned char,Eigen::Dynamic, Eigen::Dynamic> MatrixU8;
 
+#include <stdio.h>
+#include <sys/timeb.h>
+
+
+
 int main()
 {
-    const char* imagename = "test_im.jpg";
+//    const char* imagename = "test_im.jpg";
+    const char* imagename = "test_im1080.jpg";
 
     //从文件中读入图像
     cv::Mat img = cv::imread(imagename,1);
@@ -22,13 +28,14 @@ int main()
     printf("w:%d,h:%d\n",width,height);
 
 
+
     if(img.empty())
     {
         fprintf(stderr, "Can not load image %s\n", imagename);
         return -1;
     }
-    cv::imshow("image", img);
-    cv::waitKey(500);
+//    cv::imshow("image", img);
+//    cv::waitKey(500);
     try
     {
     //        Py_SetProgramName("PYTHON");
@@ -39,6 +46,10 @@ int main()
         MatrixU8 m_b(height,width);
         MatrixU8 m_g(height,width);
         MatrixU8 m_r(height,width);
+
+        struct timeb t1;
+        ftime(&t1);
+        std::cout<<"time:"<<t1.time<<"."<<t1.millitm<<std::endl;
         for(int h = 0 ; h < img.rows ; ++ h)
         {
             for(int w = 0 ; w < img.cols ; ++ w)
@@ -55,7 +66,8 @@ int main()
 //                std::cout << std::endl;
             }
         }
-
+        ftime(&t1);
+        std::cout<<"time:"<<t1.time<<"."<<t1.millitm<<std::endl;
         py_test.attr("probe_mat")(m_b,m_g,m_r);
 
     }

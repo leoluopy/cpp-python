@@ -1,6 +1,7 @@
 from pylab import *
 import numpy as np
 import cv2
+import time
 
 def test_mat(m):
     print("Inside python m = \n ", m)
@@ -14,12 +15,13 @@ def test_mat(m):
 
 
 def probe_mat(m0,m1,m2):
+    print("time:{}".format(time.time()))
     # print("Inside python m0 = \n ", m0)
     m0 = np.expand_dims(m0, 2)
     m1 = np.expand_dims(m1, 2)
     m2 = np.expand_dims(m2, 2)
     im = np.concatenate((m0,m1,m2),2)
-    print("shape:{}".format(im.shape))
+    print("time:{} shape:{}".format(time.time(),im.shape))
     imshow(im)
     show()
     return im

@@ -13,3 +13,8 @@ example.mat_show_in_cv(ims)
 ret = example.pass_string_return_mat("./1.png")
 print(ret)
 print(ret.shape)
+
+print ("--------------")
+ret = example.pass_string_return_numpy("string to numpy")
+print (ret)
+print (ret.shape)

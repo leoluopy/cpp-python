@@ -18,6 +18,58 @@ int pass_string(char *str) {
     return 0;
 }
 
+struct RetStruct_t {
+    float tl_x = -1.0;
+    float tl_y = -1.0;
+    float br_x = -1.0;
+    float br_y = -1.0;
+    float score = -1.0;
+    float p1_x = -1.0;
+    float p1_y = -1.0;
+};
+
+py::array_t<double> pass_string_return_numpy(char *str) {
+    printf("input : %s\n", str);
+
+//    std::vector<double> vec;
+//    vec.push_back(6.7);
+//    vec.push_back(6.7);
+//    vec.push_back(7.7);
+//    vec.push_back(6.7);
+//    vec.push_back(9.7);
+
+    std::vector<RetStruct_t> vec;
+    RetStruct_t tmpRet;
+    tmpRet.tl_x = 9.3;
+    tmpRet.br_x = 8.3;
+    tmpRet.br_y = 67.3;
+
+    tmpRet.p1_y = 3.3;
+    vec.push_back(tmpRet);
+    tmpRet.tl_x = 5.5;
+    tmpRet.p1_x = 2.4;
+
+    vec.push_back(tmpRet);
+
+    py::array_t<double> arY({(int) (vec.size()), 7});
+    py::buffer_info buf3 = arY.request(); // acquire buffer info
+
+    double *ptr3 = (double *) buf3.ptr;
+
+    for (int i = 0; i < vec.size(); i++) {
+        ptr3[i * 7] = vec[i].tl_x;
+        ptr3[i * 7 + 1] = vec[i].tl_y;
+        ptr3[i * 7 + 2] = vec[i].br_x;
+        ptr3[i * 7 + 3] = vec[i].br_y;
+        ptr3[i * 7 + 4] = vec[i].score;
+        ptr3[i * 7 + 5] = vec[i].p1_x;
+        ptr3[i * 7 + 6] = vec[i].p1_y;
+    }
+
+
+    return arY;
+}
+
 py::array_t<unsigned char> pass_string_return_mat(char *str) {
     cv::Mat img = cv::imread(str, 1);
     int height = img.rows;
@@ -55,21 +107,29 @@ int mat_show_in_cv(py::array_t<unsigned char> &img) {
     return 88;
 }
 
-PYBIND11_MODULE(example, m) {
-    // optional module docstring
-    m.doc() = "pybind11 example plugin";
-    // expose add function, and add keyword arguments and default arguments
+PYBIND11_MODULE(example, m
+) {
+// optional module docstring
+    m.
+
+            doc() = "pybind11 example plugin";
+
+// expose add function, and add keyword arguments and default arguments
     m.def("add", &add, "A function which adds two numbers", py::arg("i") = 1, py::arg("j") = 2);
     m.def("pass_string", &pass_string, "A function which pass string", py::arg("str") = "expstring");
     m.def("pass_string_return_mat", &pass_string_return_mat, "A function which pass string return mat",
           py::arg("str") = "expstring");
+    m.def("pass_string_return_numpy", &pass_string_return_numpy, "A function which pass string return numpy",
+          py::arg("str") = "expstringNumpy");
+
     m.def("mat_show_in_cv", &mat_show_in_cv, "A function which pass mat and show");
 
 
-    // exporting variables
+// exporting variables
     m.attr("the_answer") = 42;
     py::object world = py::cast("World");
-    m.attr("what") = world;
+    m.attr("what") =
+            world;
 }
 
 

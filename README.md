@@ -8,8 +8,10 @@ cpp invoke python / python invoke cpp
 
 ### install flow of pybind11
 ```
-git clone https://github.com/pybind/pybind11 
-ip install pytest
+git clone https://github.com/pybind/pybind11
+python setup.py build
+python setup.py install 
+pip install pytest
 sudo apt-get install python-dev python3-dev cmake python3.5-dev
 ```
 
